@@ -44,7 +44,7 @@ jobs:
         - flutter doctor -v
         - adb shell input keyevent 82
         - flutter devices
-      script: travis_retry flutter drive --target=test_driver/app_test.dart
+      script: travis_retry flutter drive --target=test_driver/app.dart
     - <<: *integration-test-stage
       os: osx
       # use oldest flutter supported version of xcode
