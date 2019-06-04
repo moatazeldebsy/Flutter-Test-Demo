@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/moatazeldebsy/Flutter-Test-Demo.svg?branch=master)](https://travis-ci.com/moatazeldebsy/Flutter-Test-Demo)
+
 # flutter_test_app
 
 A new Flutter application.
