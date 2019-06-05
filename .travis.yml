@@ -34,15 +34,17 @@ jobs:
         - ANDROID_ABI="default;armeabi-v7a"
         - sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI" > /dev/null
         - sdkmanager --list | head -15
-        - echo no | avdmanager create avd --force -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
-        - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader &
+        - echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
+        - emulator -avd test -no-skin -no-audio -no-window &
+
         # install flutter
         - git clone https://github.com/flutter/flutter.git -b beta
         - export PATH="$PATH":"$HOME/.pub-cache/bin"
         - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
         - flutter precache
         - flutter doctor -v
-        - adb shell input keyevent 82
+        - android-wait-for-emulator
+        - adb shell input keyevent 82 &
         - flutter devices
       script: travis_retry flutter drive --target=test_driver/app.dart
     - <<: *integration-test-stage
