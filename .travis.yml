@@ -3,7 +3,7 @@ jobs:
   
     - &integration-test-stage
       stage: Integration Testing
-      sudo: required
+      sudo: true
       dist: trusty
       language: generic
       os: linux
@@ -51,8 +51,6 @@ jobs:
         - export PATH=`pwd`/flutter/bin:`pwd`/flutter/bin/cache/dart-sdk/bin:$PATH
         - flutter precache
         - flutter doctor -v
-        - android-wait-for-emulator
-        - adb shell input keyevent 82 &
         - flutter devices
       script: travis_retry flutter drive --target=test_driver/app.dart
     - <<: *integration-test-stage
