@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
+# Originally written by Ralf Kistner <ralf@embarkmobile.com>, but placed in the public domain
 
 set +e
 
@@ -11,7 +13,7 @@ until [[ "$bootanim" =~ "stopped" ]]; do
   if [[ "$bootanim" =~ "device not found" || "$bootanim" =~ "device offline"
     || "$bootanim" =~ "running" ]]; then
     let "failcounter += 1"
-    echo "Waiting for emulator to start"
+    echo "Waiting for emulator to start: $failcounter of $timeout_in_sec : status: $bootanim"
     if [[ $failcounter -gt timeout_in_sec ]]; then
       echo "Timeout ($timeout_in_sec seconds) reached; failed to start emulator"
       exit 1
@@ -20,4 +22,3 @@ until [[ "$bootanim" =~ "stopped" ]]; do
   sleep 1
 done
 
-echo "Emulator is ready"
