@@ -1,6 +1,4 @@
-#!/bin/bash
-
-# Originally written by Ralf Kistner <ralf@embarkmobile.com>, but placed in the public domain
+#!/usr/bin/env bash
 
 set +e
 
