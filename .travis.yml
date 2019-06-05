@@ -7,7 +7,8 @@ jobs:
       dist: trusty
       language: generic
       os: linux
-      env: running driver on emulator
+      env:
+      - SYS=25 ABI="google_apis;armeabi-v7a"
       # Run integration tests on android        
       # Install the Android SDK Dependency.
       before_install:
