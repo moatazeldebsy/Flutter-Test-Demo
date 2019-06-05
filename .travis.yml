@@ -42,7 +42,7 @@ jobs:
         - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader &
       before_script:
       # Wait for emulator to startup.
-        - ./scripts/android-wait-for-emulator.sh
+        - android-wait-for-emulator
         - adb shell input keyevent 82
 
         # install flutter
