@@ -47,7 +47,7 @@ jobs:
         - flutter doctor -v
 
         # Wait for emulator to finish startup.
-        - ./script/android-wait-for-emulator.sh
+        - ./scripts/android-wait-for-emulator.sh
         - adb shell input keyevent 82
         - flutter devices
       script: travis_retry flutter drive --target=test_driver/app.dart
