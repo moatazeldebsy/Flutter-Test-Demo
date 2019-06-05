@@ -31,7 +31,7 @@ matrix:
         - unzip -qq gradle-3.5-bin.zip
         - export GRADLE_HOME=$PWD/gradle-3.5
         - export PATH=$GRADLE_HOME/bin:$PATH
-        - git clone https://github.com/flutter/flutter.git -b stable
+        - git clone https://github.com/flutter/flutter.git
       script:
         - flutter drive --target=test_driver/app.dart
 
@@ -39,12 +39,13 @@ matrix:
       language: generic
       osx_image: xcode8.3
       before_script:
+        - sudo easy_install pip
         - pip install six
         - brew update
         - brew install --HEAD libimobiledevice
         - brew install ideviceinstaller
         - brew install ios-deploy
-        - git clone https://github.com/flutter/flutter.git -b stable
+        - git clone https://github.com/flutter/flutter.git
       script:
         - flutter drive --target=test_driver/app.dart
 
