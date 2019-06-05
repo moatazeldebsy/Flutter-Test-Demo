@@ -34,7 +34,7 @@ jobs:
         - ANDROID_ABI="default;armeabi-v7a"
         - sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI" > /dev/null
         - sdkmanager --list | head -15
-        - echo no | android create avd --force --name test --target $ANDROID_TARGET --abi $ANDROID_ABI
+        - echo no | android create avd --force --name test --tag $ANDROID_TARGET --abi $ANDROID_ABI
         - emulator -avd test -no-skin -no-audio -no-window &
 
         # install flutter
