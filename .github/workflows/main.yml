@@ -22,27 +22,15 @@ jobs:
       - run: flutter pub get
       # run static analys code
       - run: flutter  analyze
-      # run  flutter widgets tests  and unit tests
-      - run: flutter test --coverage
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: coverage/lcov.info
 
   drive_ios:
-    #creates a build matrix for your jobs
     strategy:
-      #set of different configurations of the virtual environment.
       matrix:
         device:
           - "iPhone 8 (13.3)"
           - "iPhone 11 Pro (13.3)"
       fail-fast: false
-    #if conditional to prevent a job from running
-    if: github.event_name != 'pull_request'
     runs-on: macos-latest
-    #Identifies any jobs that must complete successfully before this job will run.
     needs: test
     steps:
       - name: List all simulators
@@ -69,8 +57,6 @@ jobs:
 
 
   drive_android:
-    #if conditional to prevent a job from running
-    if: github.event_name != 'pull_request'
     runs-on: macos-latest
     #creates a build matrix for your jobs
     strategy:
@@ -86,8 +72,6 @@ jobs:
           flutter-version: '1.12.14'
           channel: 'dev'
       - name: Run Flutter Driver tests
-        #GitHub Action for installing, configuring and running Android Emulators (work only Mac OS)
-        #https://github.com/ReactiveCircus/android-emulator-runner
         uses: reactivecircus/android-emulator-runner@v1
         with:
           api-level: ${{ matrix.api-level }}
